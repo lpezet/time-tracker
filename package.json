@@ -1,5 +1,5 @@
 {
-  "name": "@lpezet/time-tracking",
+  "name": "@lpezet/time-tracker",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lpezet/time-tracking.git"
+    "url": "git+https://github.com/lpezet/time-tracker.git"
   },
   "author": "",
   "license": "ISC",
