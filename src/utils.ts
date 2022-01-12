@@ -8,15 +8,20 @@ export function parseDay(line: string): string {
   return line.replace("# ", "");
 }
 
-export function toMilitaryTime(value: string): number {
+export function toMilitaryTime(value: string, isFrom: boolean): number {
   // value is like 5:30
 
   const apm = value.slice(-2);
   const parts = value.substring(0, value.length - 2).split(":");
   let hours = parseInt(parts[0]);
   const minutes = parseInt(parts[1]);
-  if (("PM" === apm && hours < 12) || ("AM" === apm && hours === 12)) {
+  if (
+    ("PM" === apm && hours < 12) ||
+    ("AM" === apm && hours === 12 && !isFrom)
+  ) {
     hours += 12;
+  } else if ("AM" === apm && hours === 12) {
+    hours = 0;
   }
   /*
 console.log(
@@ -51,8 +56,8 @@ export function parseMinutes(line: string): number {
   if (match !== null) {
     const from = match[1];
     const to = match[4];
-    const fromMT = toMilitaryTime(from);
-    const toMT = toMilitaryTime(to);
+    const fromMT = toMilitaryTime(from, true);
+    const toMT = toMilitaryTime(to, false);
     const diff = toMT - fromMT;
     const minutes = militaryTimeToMinutes(diff);
     return minutes;

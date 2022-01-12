@@ -6,7 +6,9 @@ program
   .command("calc <file>")
   .description("Calculate time spent based on time tracking file.")
   .action((file) => {
-    timeTracker.processFile(file);
+    timeTracker.calculateDaysMinutesFromFile(file).then((daysMinutes) => {
+      timeTracker.displayDaysMinutes(daysMinutes);
+    });
   });
 
 program.parse(process.argv);

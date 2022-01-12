@@ -63,6 +63,10 @@ export class TimeTracker {
       } else if (utils.containsTime(lineTrimmed)) {
         // read hours
         const minutes = utils.parseMinutes(lineTrimmed);
+        if (minutes > 24 * 60)
+          throw new Error(
+            `Current implementation is within a day. Found ${minutes} which is more than 24 hours.`
+          );
         days[day] += minutes;
       }
     }
