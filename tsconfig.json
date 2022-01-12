@@ -1,9 +1,13 @@
 {
   "compilerOptions": {
     "sourceMap": true,
+    "typeRoots": ["node_modules/@types", "types"],
     "outDir": "dist",
     "strict": true,
+    "skipLibCheck": true,
     "lib": ["esnext"],
     "esModuleInterop": true
-  }
+  },
+  "include": ["src/**/*", "bin/**/*"],
+  "exclude": ["node_modules"]
 }

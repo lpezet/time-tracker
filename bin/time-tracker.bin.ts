@@ -1,5 +1,7 @@
+#!/usr/bin/env node
+
 import { program } from "commander";
-import { TimeTracker } from "./time-tracker";
+import { TimeTracker } from "../src/time-tracker";
 
 const timeTracker = new TimeTracker();
 program
