@@ -10,7 +10,7 @@
     "tsc": "tsc",
     "mocha-single": "nyc --check-coverage=false --reporter=html mocha",
     "test": "nyc --reporter=html --reporter=text-summary mocha --check-leaks --reporter spec \"./test/**/*.spec.ts\"",
-    "dist": "npm run clean && npm run tsc -- --build tsconfig.json && cp Readme.md dist/ && chmod +x dist/bin/time-tracker.bin.js",
+    "dist": "npm run clean && npm run tsc -- --build tsconfig.json && cp Readme.md package.json dist/ && chmod +x dist/bin/time-tracker.bin.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
