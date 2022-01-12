@@ -2,7 +2,6 @@
   "name": "@lpezet/time-tracker",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
   "bin": {
     "@lpezet-time-tracker": "bin/time-tracker.bin.js"
   },
@@ -19,7 +18,7 @@
     "url": "git+https://github.com/lpezet/time-tracker.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "files": [
     "dist/**/*.js",
     "dist/**/*.d.ts",
