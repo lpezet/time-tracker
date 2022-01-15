@@ -7,38 +7,35 @@ import * as utils from "./utils";
 export type DaysMinutes = { [key: string]: number };
 
 export class TimeTracker {
+  _display_keyed(key: string, day: string, minutes: number): void {
+    const display = `${key}\t${day}\t${minutes}\t${utils.displayMinutes(
+      minutes
+    )}`;
+    console.log(display);
+  }
   displayDaysMinutes(daysMinutes: DaysMinutes): void {
     let biWeeklyMinutes = 0;
     let currentBiWeekly = "";
     Object.keys(daysMinutes).forEach((d) => {
       const month = d.substring(0, 2);
+      const year = d.substring(6);
       const dayOfMonth = d.substring(3, 5);
       const nDayOfMonth = parseInt(dayOfMonth);
       // console.log("Month = " + month + ", dayOfMonth = " + dayOfMonth);
-      const biWeekly = month + "/" + (nDayOfMonth > 15 ? "15" : "01");
+      const biWeekly =
+        month + "/" + (nDayOfMonth > 15 ? "15" : "01") + "/" + year;
       if (currentBiWeekly !== biWeekly) {
         if (currentBiWeekly !== "") {
-          console.log(
-            "## Biweekly " +
-              currentBiWeekly +
-              ": " +
-              utils.displayMinutes(biWeeklyMinutes)
-          );
+          this._display_keyed("Biweekly", currentBiWeekly, biWeeklyMinutes);
         }
         currentBiWeekly = biWeekly;
         biWeeklyMinutes = 0;
       }
       biWeeklyMinutes += daysMinutes[d];
-      const display = "Day " + d + ": " + utils.displayMinutes(daysMinutes[d]);
-      console.log(display);
+      this._display_keyed("Daily", d, daysMinutes[d]);
     });
     if (currentBiWeekly !== "") {
-      console.log(
-        "## Biweekly " +
-          currentBiWeekly +
-          ": " +
-          utils.displayMinutes(biWeeklyMinutes)
-      );
+      this._display_keyed("Biweekly", currentBiWeekly, biWeeklyMinutes);
     }
   }
   async calculateDaysMinutesFromString(content: string): Promise<DaysMinutes> {
