@@ -1,6 +1,8 @@
 const TIME_REGEX =
   /\[([0-9]+(\:[0-9]{2})?([AP]M))-([0-9]+(:[0-9]{2})?([AP]M))\]/;
 
+const DEBUG = process.env.DEBUG;
+
 export function containsTime(value: string): boolean {
   return value.match(TIME_REGEX) != null;
 }
@@ -23,11 +25,12 @@ export function toMilitaryTime(value: string, isFrom: boolean): number {
   } else if ("AM" === apm && hours === 12) {
     hours = 0;
   }
-  /*
-console.log(
-  "toMT: apm = " + apm + ", hours = " + hours + ", minutes = " + minutes
-);
-*/
+  if (DEBUG) {
+    console.log(
+      "toMT: apm = " + apm + ", hours = " + hours + ", minutes = " + minutes
+    );
+  }
+
   return hours * 100 + minutes;
 }
 
@@ -35,18 +38,18 @@ export function militaryTimeToMinutes(value: number): number {
   const hours = (value / 100) >> 0;
   const minutes = value - hours * 100;
   const result = hours * 60 + minutes;
-  /*
-console.log(
-  "value = " +
-    value +
-    ", hours = " +
-    hours +
-    ", minutes = " +
-    minutes +
-    ", result = " +
-    result
-);
-*/
+  if (DEBUG) {
+    console.log(
+      "value = " +
+        value +
+        ", hours = " +
+        hours +
+        ", minutes = " +
+        minutes +
+        ", result = " +
+        result
+    );
+  }
   return result;
 }
 
@@ -58,8 +61,15 @@ export function parseMinutes(line: string): number {
     const to = match[4];
     const fromMT = toMilitaryTime(from, true);
     const toMT = toMilitaryTime(to, false);
-    const diff = toMT - fromMT;
-    const minutes = militaryTimeToMinutes(diff);
+    const fromMTInMinutes = militaryTimeToMinutes(fromMT);
+    const toMTInMinutes = militaryTimeToMinutes(toMT);
+    const minutes = toMTInMinutes - fromMTInMinutes;
+    // const minutes = militaryTimeToMinutes(diff);
+    if (DEBUG) {
+      console.log(
+        `Calculating minutes between ${from} and ${to}: ${minutes} minutes (fromMT=${fromMT}, toMT=${toMT}, fromInMin=${fromMTInMinutes}, toInMin=${toMTInMinutes})`
+      );
+    }
     return minutes;
   }
   throw new Error("Could not parse minutes for [" + line + "]");

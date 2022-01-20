@@ -4,13 +4,13 @@ import * as readline from "readline";
 import { Readable } from "stream";
 import * as utils from "./utils";
 
+const DEBUG = process.env.DEBUG;
+
 export type DaysMinutes = { [key: string]: number };
 
 export class TimeTracker {
   _display_keyed(key: string, day: string, minutes: number): void {
-    const display = `${key}\t${day}\t${minutes}\t${utils.displayMinutes(
-      minutes
-    )}`;
+    const display = `${key},${day},${minutes},${utils.displayMinutes(minutes)}`;
     console.log(display);
   }
   displayDaysMinutes(daysMinutes: DaysMinutes): void {
@@ -51,7 +51,9 @@ export class TimeTracker {
     let day: string = "";
     for await (const line of content) {
       // Each line in input.txt will be successively available here as `line`.
-      // console.log(`Line from file: ${line}`);
+      if (DEBUG) {
+        console.log(`Line from file: ${line}`);
+      }
       const lineTrimmed = line.trim();
       if (lineTrimmed.match(/^# [0-9]+\/[0-9]+\/[0-9]+/)) {
         // read day

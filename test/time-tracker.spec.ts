@@ -164,7 +164,32 @@ describe("time-tracker", function () {
         // console.log(actual);
         assert.deepEqual(actual, {
           "01/06/2022": 200,
-          "01/07/2022": 395,
+          "01/07/2022": 355,
+        });
+        done();
+      })
+      .catch((e) => {
+        done(e);
+      });
+  });
+  it("bug001", function (done) {
+    const tt = new TimeTracker();
+
+    const bug = `
+    # 01/19/2022
+
+    - [9:30AM-10:30AM] Deep dive with Xing in POW ETL. Getting more read-only access to systems.
+    - [10:30AM-11:00AM] Notes on POW ETL.
+    - [4:00PM-5:30PM] Looking into Twilio TaskRouter and testing it for Telemed. Looked into Twilio FlexUI as well.
+    - [6:30PM-10:00PM] Data Flow Diagram for merging of customer and purchase data.
+    `;
+
+    tt.calculateDaysMinutesFromString(bug)
+      .then((actual) => {
+        assert.isNotNull(actual);
+        // console.log(actual);
+        assert.deepEqual(actual, {
+          "01/19/2022": 390,
         });
         done();
       })
@@ -195,7 +220,7 @@ describe("time-tracker", function () {
         // console.log(actual);
         assert.deepEqual(actual, {
           "01/06/2022": 200,
-          "01/07/2022": 395,
+          "01/07/2022": 355,
         });
         done();
       })
