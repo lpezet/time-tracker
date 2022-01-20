@@ -1,6 +1,6 @@
 {
   "name": "@lpezet/time-tracker",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "bin": {
     "@lpezet-time-tracker": "bin/time-tracker.bin.js"
