@@ -178,10 +178,10 @@ describe("time-tracker", function () {
     const bug = `
     # 01/19/2022
 
-    - [9:30AM-10:30AM] Deep dive with Xing in POW ETL. Getting more read-only access to systems.
-    - [10:30AM-11:00AM] Notes on POW ETL.
-    - [4:00PM-5:30PM] Looking into Twilio TaskRouter and testing it for Telemed. Looked into Twilio FlexUI as well.
-    - [6:30PM-10:00PM] Data Flow Diagram for merging of customer and purchase data.
+    - [9:30AM-10:30AM] Something good.
+    - [10:30AM-11:00AM] Something really good.
+    - [4:00PM-5:30PM] Checking some Twilio Stuff.
+    - [6:30PM-10:00PM] Doing some good here.
     `;
 
     tt.calculateDaysMinutesFromString(bug)
