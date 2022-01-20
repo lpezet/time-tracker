@@ -11,12 +11,12 @@ Toolbox for time tracking.
 ```bash
 echo -e "# 01/07/2021\n- [8:00AM-8:30AM] Shower.\n\n# 01/08/2021\n- [9:00AM-9:45AM] Breakfast\n\n# 01/16/2021\n- [11:00AM-1:15PM] Nap time.\n\n# 01/23/2021\n- [2:00PM-4:00PM] Woodworking." > test.md
 @lpezet-time-tracker calc test.md
-> Day 01/07/2021: 0 hours 30 minutes
-> Day 01/08/2021: 0 hours 45 minutes
-> ## Biweekly 01/01: 1 hours 15 minutes
-> Day 01/16/2021: 2 hours 15 minutes
-> Day 01/23/2021: 2 hours 0 minutes
-> ## Biweekly 01/15: 4 hours 15 minutes
+> Daily,01/07/2021,30,0 hours 30 minutes
+> Daily,01/08/2021,45,0 hours 45 minutes
+> Biweekly,01/01/2021,75,1 hours 15 minutes
+> Daily,01/16/2021,135,2 hours 15 minutes
+> Daily,01/23/2021,120,2 hours 0 minutes
+> Biweekly,01/15/2021,255,4 hours 15 minutes
 ```
 
 # Installation
